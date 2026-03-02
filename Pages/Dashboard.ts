@@ -5,8 +5,7 @@ export class DashboardPage {
   constructor(private page: Page) {}
 
   async verifyDashboardLoaded() {
-    await expect(
-      this.page.locator(".card-body")
-    ).toBeVisible();
-  }
+  const products = this.page.locator('.card-body');
+  await expect(products).toHaveCount(3);
+}
 }
