@@ -1,9 +1,22 @@
 import { test } from "@playwright/test";
 import { LoginPage } from "../Pages/LoginPage";
 import { DashboardPage } from "../Pages/Dashboard";
+import * as allure from 'allure-js-commons';
 
 test.describe("Rahul Shetty Client App Tests", () => {
   test("Valid Login Test", async ({ page }) => {
+
+    // ✅ Allure Metadata
+    await allure.owner('Sitanshu');
+    await allure.severity('critical');
+    await allure.feature('Authentication');
+    await allure.story('Valid User Login');
+    await allure.tag('Smoke');
+    await allure.link(
+      'https://jira.company.com/AUT-101',
+      'JIRA',
+      'issue'
+    );
     const login = new LoginPage(page);
     const dashboard = new DashboardPage(page);
 
