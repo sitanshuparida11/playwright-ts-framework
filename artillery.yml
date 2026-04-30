@@ -1,0 +1,51 @@
+config:
+  target: "https://automationexercise.com"
+  phases:
+    - duration: 30
+      arrivalRate: 5
+      name: "Ramp up - Phase 1"
+    - duration: 60
+      arrivalRate: 15
+      name: "Ramp up - Phase 2"
+    - duration: 120
+      arrivalRate: 50
+      name: "Peak load - Heavy stress"
+    - duration: 180
+      arrivalRate: 100
+      name: "Maximum load - Critical stress"
+    - duration: 120
+      arrivalRate: 50
+      name: "Sustained high load"
+    - duration: 60
+      arrivalRate: 15
+      name: "Ramp down - Phase 1"
+    - duration: 30
+      arrivalRate: 5
+      name: "Cool down"
+  
+  defaults:
+    headers:
+      User-Agent: "Artillery Load Test"
+      Accept: "application/json"
+
+scenarios:
+  - name: "API List Endpoint Test"
+    flow:
+      - get:
+          url: "/api_list"
+          expect:
+            - statusCode: 200
+
+  - name: "API Products Endpoint Test"
+    flow:
+      - get:
+          url: "/api/productsList"
+          expect:
+            - statusCode: 200
+
+  - name: "API Brands Endpoint Test"
+    flow:
+      - get:
+          url: "/api/brandsList"
+          expect:
+            - statusCode: 200
